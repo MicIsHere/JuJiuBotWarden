@@ -16,8 +16,7 @@ class ClearBadWords {
         "弱智",
         "逼",
         "脑残",
-        "你妈",
-        "sb"
+        "你妈"
     )
 
     private val cqCode = arrayOf(
@@ -33,6 +32,10 @@ class ClearBadWords {
         println("任务 ClearBadWords 已开始")
 
         val clearedData = getClearedData(dataBase)
+
+//        clearedData.forEach {
+//
+//        }
 
         clearedData.forEach { doc ->
             val answers = doc.first["answers"] as List<Document> // 获取 answers 列表
@@ -64,7 +67,7 @@ class ClearBadWords {
                 val contextCollection = db.getCollection("context")
 
                 contextCollection.find().forEach { doc ->
-                    val keywords = doc["keywords"].toString()
+                    val keywords = doc["keywords"].toString().trim()
                     val id = doc["_id"].toString()
 
                     val shouldKeep = cqCode.none { cqCode ->
