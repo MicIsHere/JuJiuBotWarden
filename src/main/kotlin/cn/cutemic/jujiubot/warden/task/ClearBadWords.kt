@@ -3,6 +3,7 @@ package cn.cutemic.jujiubot.warden.task
 import cn.cutemic.jujiubot.warden.utils.MongoDBUtil
 import com.mongodb.client.MongoDatabase
 import org.bson.Document
+import javax.print.Doc
 import kotlin.system.measureTimeMillis
 
 class ClearBadWords {
@@ -59,10 +60,20 @@ class ClearBadWords {
         }
     }
 
-    private fun getClearedData(database: MongoDatabase?): ArrayList<Pair<Document,String>> {
-        val clearedData = ArrayList<Pair<Document,String>>()
-        val time = measureTimeMillis {
+    private fun getClearedDataMap(database: MongoDatabase): Map<Document, String> {
+        return database.getCollection("context").find()
+            .filter { doc ->
+                val keywords = doc["keywords"].toString().trim()
+                cqCode.none { cqCode ->
+                    keywords.startsWith(cqCode, ignoreCase = true)
+                }
+            }
+            .associateWith { doc -> doc["_id"].toString() }
+    }
 
+    private fun getClearedData(database: MongoDatabase?): ArrayList<Pair<Document,String>> {
+        val clearedData = ArrayList<Pair<Document, String>>()
+        val time = measureTimeMillis {
             database?.let { db ->
                 val contextCollection = db.getCollection("context")
 
@@ -84,5 +95,5 @@ class ClearBadWords {
         println("已清理 context 中的CQ码，耗时 $time ms")
         return clearedData
     }
-
 }
+
