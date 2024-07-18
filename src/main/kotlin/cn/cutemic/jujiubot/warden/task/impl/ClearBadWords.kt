@@ -36,7 +36,12 @@ class ClearBadWords {
         "强奸",
         "家暴",
         "革命",
-        "反动"
+        "反动",
+        "该消息只支持",
+        "请使用新版",
+        "做爱",
+        "[CQ:at,",
+        "sb"
     )
 
     private val cqCode = listOf(
@@ -45,7 +50,6 @@ class ClearBadWords {
         "[CQ:video,",
         "[CQ:json,",
         "[CQ:forward,",
-        "[CQ:at,",
         "[CQ:markdown,",
         "[CQ:face,"
     )
