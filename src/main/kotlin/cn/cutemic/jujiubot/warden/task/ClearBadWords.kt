@@ -1,5 +1,6 @@
 package cn.cutemic.jujiubot.warden.task
 
+import cn.cutemic.jujiubot.warden.data.Context
 import cn.cutemic.jujiubot.warden.utils.MongoDBUtil
 import com.mongodb.client.MongoDatabase
 import org.bson.Document
@@ -18,7 +19,14 @@ class ClearBadWords {
         "逼",
         "脑残",
         "你妈",
-        "sb"
+        "sb",
+        "脑瘫",
+        "死吗",
+        "死妈",
+        "全家",
+        "鸡巴",
+        "jb",
+        "cnm"
     )
 
     private val cqCode = arrayOf(
@@ -72,7 +80,7 @@ class ClearBadWords {
     }
 
     private fun getClearedDataMap(database: MongoDatabase?): Map<Document, String> {
-        return database!!.getCollection("context").find()
+        return database!!.getCollection<Context>("context").find()
             .filter { doc ->
                 val keywords = doc["keywords"].toString().trim()
                 cqCode.none { cqCode ->
