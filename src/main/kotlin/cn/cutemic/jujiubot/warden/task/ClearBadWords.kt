@@ -11,7 +11,7 @@ class ClearBadWords {
 
     private val dataBase = MongoDBUtil.getDatabase("PallasBot")!!
 
-    private val badWords = arrayOf(
+    private val badWords = listOf(
         "傻逼",
         "操",
         "几把",
@@ -29,7 +29,7 @@ class ClearBadWords {
         "cnm"
     )
 
-    private val cqCode = arrayOf(
+    private val cqCode = listOf(
         "[CQ:image,",
         "[CQ:record,",
         "[CQ:video,",
@@ -66,15 +66,18 @@ class ClearBadWords {
                             }
                         }
 
+                    cqCode.
+
                     cqCode.forEach {
-                        if (!keywords.startsWith(it)) {
+                        if (!keywords.startsWith(it)){
+
                             if (badWords.any { badWord -> keywords.contains(badWord) }) {
                                 count++
-                                println("在 keywords 搜索到不雅词汇: $keywords")
+                                println("在 keywords 检查到不雅词汇: $keywords")
                             }
+
                         }
                     }
-
                 }
             }
         }

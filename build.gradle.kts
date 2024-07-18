@@ -13,6 +13,7 @@ repositories {
 dependencies {
     implementation("org.mongodb:mongodb-driver-kotlin-coroutine:5.1.2")
     implementation("org.mongodb:bson-kotlinx:5.1.2")
+    implementation("it.unimi.dsi:fastutil:8.2.1")
     testImplementation(kotlin("test"))
 }
 
