@@ -4,6 +4,8 @@ import cn.cutemic.jujiubot.warden.data.Context
 import cn.cutemic.jujiubot.warden.utils.MongoDBUtil
 import com.mongodb.kotlin.client.coroutine.MongoDatabase
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.runBlocking
 
 class ClearBadWords {
 
@@ -43,42 +45,44 @@ class ClearBadWords {
 
         var count = 0
 
-        getClearedDataMap(dataBase).forEach { doc ->
-            val answers = doc.key.answers
+        runBlocking {
+            getClearedDataMap(dataBase).forEach { doc ->
+                val answers = doc.key.answers
 
-            answers.forEach { answer ->
-                val messages = answer.messages
-                val keywords = answer.keywords
+                answers.forEach { answer ->
+                    val messages = answer.messages
+                    val keywords = answer.keywords
 
-                messages
-                    .filter { message ->
-                        cqCode.none { cqCode ->
-                            message.startsWith(cqCode)
+                    messages
+                        .filter { message ->
+                            cqCode.none { cqCode ->
+                                message.startsWith(cqCode)
+                            }
+                        }
+                        .forEach { message ->
+                            if (badWords.any { badWord -> message.contains(badWord) }) {
+                                count++
+                                println("在 messages 检查到不雅词汇: $message")
+                            }
+                        }
+
+                    cqCode.forEach {
+                        if (!keywords.startsWith(it)) {
+                            if (badWords.any { badWord -> keywords.contains(badWord) }) {
+                                count++
+                                println("在 keywords 搜索到不雅词汇: $keywords")
+                            }
                         }
                     }
-                    .forEach { message ->
-                        if (badWords.any { badWord -> message.contains(badWord) }) {
-                            count++
-                            println("在 messages 检查到不雅词汇: $message")
-                        }
-                    }
 
-//                cqCode.forEach {
-//                    if (!keywords.startsWith(it)){
-//                        if (badWords.any { badWord -> keywords.contains(badWord) }) {
-//                            count++
-//                            println("在 keywords 搜索到不雅词汇: $keywords")
-//                        }
-//                    }
-//                }
-
+                }
             }
         }
         println("共检查到 $count 个不雅词汇")
     }
 
-    private fun getClearedDataMap(database: MongoDatabase): Map<Context, String> {
-        return database.getCollection<Context>("context", ).find()
+    private suspend fun getClearedDataMap(database: MongoDatabase): Map<Context, String> {
+        return database.getCollection<Context>("context").find().toList()
             .filter { doc ->
                 val keywords = doc.keywords.trim()
                 cqCode.none { cqCode ->

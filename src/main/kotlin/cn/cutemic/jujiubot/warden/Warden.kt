@@ -8,7 +8,7 @@ class Warden {
     init {
 
         println("JuJiuBot-Warden 初始化..")
-        if (!MongoDBUtil.connect()){
+        if (!MongoDBUtil.connect()) {
             println("数据库连接失败!")
             System.exit(0)
         }
