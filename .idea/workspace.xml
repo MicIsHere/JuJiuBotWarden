@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8009b66-2b34-4acf-9a52-2c45831795d0" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/Warden.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/Warden.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/task/ClearBadWords.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/task/ClearBadWords.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/utils/MongoDBUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/utils/MongoDBUtil.kt" afterDir="false" />
-    </list>
+    <list default="true" id="c8009b66-2b34-4acf-9a52-2c45831795d0" name="更改" comment="??" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -118,9 +110,20 @@
       <option name="presentableId" value="Default" />
       <updated>1721274887290</updated>
     </task>
+    <task id="LOCAL-00001" summary="??">
+      <option name="closed" value="true" />
+      <created>1721284141990</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1721284141990</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="??" />
+    <option name="LAST_COMMIT_MESSAGE" value="??" />
   </component>
 </project>

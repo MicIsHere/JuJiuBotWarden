@@ -17,7 +17,8 @@ class ClearBadWords {
         "弱智",
         "逼",
         "脑残",
-        "你妈"
+        "你妈",
+        "sb"
     )
 
     private val cqCode = arrayOf(
@@ -32,14 +33,8 @@ class ClearBadWords {
     init {
         println("任务 ClearBadWords 已开始")
 
-        val clearedData = getClearedData(dataBase)
-
-//        clearedData.forEach {
-//
-//        }
-
-        clearedData.forEach { doc ->
-            val answers = doc.first["answers"] as List<Document> // 获取 answers 列表
+        getClearedDataMap(dataBase).forEach { doc ->
+            val answers = doc.key["answers"] as List<Document> // 获取 answers 列表
 
             answers.forEach { answer ->
                 val messages = answer["messages"] as List<String> // 获取 messages 列表
@@ -60,8 +55,8 @@ class ClearBadWords {
         }
     }
 
-    private fun getClearedDataMap(database: MongoDatabase): Map<Document, String> {
-        return database.getCollection("context").find()
+    private fun getClearedDataMap(database: MongoDatabase?): Map<Document, String> {
+        return database!!.getCollection("context").find()
             .filter { doc ->
                 val keywords = doc["keywords"].toString().trim()
                 cqCode.none { cqCode ->
@@ -69,31 +64,6 @@ class ClearBadWords {
                 }
             }
             .associateWith { doc -> doc["_id"].toString() }
-    }
-
-    private fun getClearedData(database: MongoDatabase?): ArrayList<Pair<Document,String>> {
-        val clearedData = ArrayList<Pair<Document, String>>()
-        val time = measureTimeMillis {
-            database?.let { db ->
-                val contextCollection = db.getCollection("context")
-
-                contextCollection.find().forEach { doc ->
-                    val keywords = doc["keywords"].toString().trim()
-                    val id = doc["_id"].toString()
-
-                    val shouldKeep = cqCode.none { cqCode ->
-                        keywords.startsWith(cqCode, ignoreCase = true)
-                    }
-
-                    if (shouldKeep) {
-                        clearedData.add(Pair(doc, id))
-                    }
-                }
-            }
-
-        }
-        println("已清理 context 中的CQ码，耗时 $time ms")
-        return clearedData
     }
 }
 
