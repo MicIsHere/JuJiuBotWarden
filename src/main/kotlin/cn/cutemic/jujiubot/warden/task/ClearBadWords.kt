@@ -3,11 +3,14 @@ package cn.cutemic.jujiubot.warden.task
 import cn.cutemic.jujiubot.warden.data.Context
 import cn.cutemic.jujiubot.warden.utils.MongoDBUtil
 import com.mongodb.kotlin.client.coroutine.MongoDatabase
+import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import it.unimi.dsi.fastutil.objects.ObjectBigLists
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
+import kotlin.system.measureTimeMillis
+import kotlin.time.measureTime
 
 class ClearBadWords {
 
@@ -81,17 +84,22 @@ class ClearBadWords {
     }
 
     private suspend fun getClearedDataMap(database: MongoDatabase): Map<Context, String> {
-        return ObjectArrayList(database.getCollection<Context>("context").find().toList())
-            .filter { doc ->
-                val keywords = doc.keywords.trim()
-                cqCode.none { cqCode ->
-                    keywords.startsWith(cqCode)
+        val linkedHashMap: Map<Context, String>
+        val time = measureTimeMillis {
+            linkedHashMap = ObjectArrayList(database.getCollection<Context>("context").find().toList())
+                .filter { doc ->
+                    val keywords = doc.keywords.trim()
+                    cqCode.none { cqCode ->
+                        keywords.startsWith(cqCode)
+                    }
                 }
-            }
-            .associateWith { doc ->
-                // TODO: doc["_id"].toString()
-                ""
-            }
+                .associateWith { doc ->
+                    // TODO: doc["_id"].toString()
+                    ""
+                }
+        }
+        println("Scan context used ${time}ms")
+        return Object2ObjectLinkedOpenHashMap(linkedHashMap)
     }
 }
 
