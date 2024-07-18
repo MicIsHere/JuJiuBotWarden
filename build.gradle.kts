@@ -1,6 +1,9 @@
+import org.gradle.internal.impldep.org.junit.experimental.categories.Categories.CategoryFilter.include
+
 plugins {
     kotlin("jvm") version "2.0.0"
     application
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "cn.cutemic.jujiubot.warden"
@@ -25,5 +28,11 @@ kotlin {
 }
 
 application {
-    mainClass = "cn.cutemic.jujiubot.warden.Main"
+    mainClass = "cn.cutemic.jujiubot.warden.MainKt"
+}
+
+tasks.jar{
+    manifest{
+        attributes("Main-Class" to "cn.cutemic.jujiubot.warden.MainKt")
+    }
 }

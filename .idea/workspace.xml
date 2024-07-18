@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8009b66-2b34-4acf-9a52-2c45831795d0" name="更改" comment="???????">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/task/TaskManager.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/utils/ConsoleColors.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/utils/Logger.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/1.txt" afterDir="false" />
+    <list default="true" id="c8009b66-2b34-4acf-9a52-2c45831795d0" name="更改" comment="能用了">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/Warden.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/Warden.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/task/ClearBadWords.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/task/impl/ClearBadWords.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/utils/MongoDBUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/cn/cutemic/jujiubot/warden/utils/MongoDBUtil.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,12 +22,26 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="JuJiuBotWarden" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="JuJiuBotWarden" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="JuJiuBotWarden" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -81,6 +89,7 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "Gradle.JuJiuBotWarden [build].executor": "Run",
     "Gradle.下载源代码.executor": "Run",
     "Gradle.构建 JuJiuBotWarden.executor": "Run",
     "Kotlin.MainKt.executor": "Run",
@@ -105,7 +114,29 @@
       <recent name="cn.cutemic.jujiubot.warden" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.JuJiuBotWarden [build]">
+    <configuration name="JuJiuBotWarden [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cn.cutemic.jujiubot.warden.MainKt" />
       <module name="JuJiuBotWarden.main" />
@@ -115,6 +146,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.JuJiuBotWarden [build]" />
         <item itemvalue="Kotlin.MainKt" />
       </list>
     </recent_temporary>
@@ -168,7 +200,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721291234574</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="能用了">
+      <option name="closed" value="true" />
+      <created>1721306835355</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1721306835355</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -189,6 +229,7 @@
     <MESSAGE value="????" />
     <MESSAGE value="?????" />
     <MESSAGE value="???????" />
-    <option name="LAST_COMMIT_MESSAGE" value="???????" />
+    <MESSAGE value="能用了" />
+    <option name="LAST_COMMIT_MESSAGE" value="能用了" />
   </component>
 </project>

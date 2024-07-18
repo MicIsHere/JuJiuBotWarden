@@ -35,26 +35,4 @@ object MongoDBUtil {
         }
     }
 
-    suspend fun removeOperationByTime(database: MongoCollection<*>, removeMany: Boolean, time: Int){
-
-        when (removeMany) {
-            true -> {
-                try {
-                    database.findOneAndDelete(Filters.eq("time",time))
-                } catch (e: Exception){
-                    e.printStackTrace()
-                }
-            }
-
-            false -> {
-                try {
-                    database.findOneAndDelete(Filters.eq("time",time))
-                } catch (e: Exception){
-                    e.printStackTrace()
-                }
-            }
-        }
-
-    }
-
 }
