@@ -2,10 +2,8 @@ package cn.cutemic.jujiubot.warden.task
 
 import cn.cutemic.jujiubot.warden.data.Context
 import cn.cutemic.jujiubot.warden.utils.MongoDBUtil
-import com.mongodb.client.MongoDatabase
-import org.bson.Document
-import javax.print.Doc
-import kotlin.system.measureTimeMillis
+import com.mongodb.kotlin.client.coroutine.MongoDatabase
+import kotlinx.coroutines.flow.filter
 
 class ClearBadWords {
 
@@ -80,7 +78,7 @@ class ClearBadWords {
     }
 
     private fun getClearedDataMap(database: MongoDatabase): Map<Context, String> {
-        return database.getCollection("context", Context::class.java).find()
+        return database.getCollection<Context>("context", ).find()
             .filter { doc ->
                 val keywords = doc.keywords.trim()
                 cqCode.none { cqCode ->

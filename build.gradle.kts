@@ -11,7 +11,8 @@ repositories {
 }
 
 dependencies {
-    implementation("org.mongodb:mongodb-driver-sync:5.1.2")
+    implementation("org.mongodb:mongodb-driver-kotlin-coroutine:5.1.2")
+    implementation("org.mongodb:bson-kotlinx:5.1.2")
     testImplementation(kotlin("test"))
 }
 
