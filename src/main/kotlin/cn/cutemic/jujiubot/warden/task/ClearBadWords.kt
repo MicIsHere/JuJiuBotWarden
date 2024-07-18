@@ -3,6 +3,8 @@ package cn.cutemic.jujiubot.warden.task
 import cn.cutemic.jujiubot.warden.data.Context
 import cn.cutemic.jujiubot.warden.utils.MongoDBUtil
 import com.mongodb.kotlin.client.coroutine.MongoDatabase
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import it.unimi.dsi.fastutil.objects.ObjectBigLists
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
@@ -66,16 +68,10 @@ class ClearBadWords {
                             }
                         }
 
-                    cqCode.
-
-                    cqCode.forEach {
-                        if (!keywords.startsWith(it)){
-
-                            if (badWords.any { badWord -> keywords.contains(badWord) }) {
-                                count++
-                                println("在 keywords 检查到不雅词汇: $keywords")
-                            }
-
+                    if (cqCode.none { keywords.startsWith(it) }) {
+                        if (badWords.any { badWord -> keywords.contains(badWord) }) {
+                            count++
+                            println("在 keywords 搜索到不雅词汇: $keywords")
                         }
                     }
                 }
@@ -85,7 +81,7 @@ class ClearBadWords {
     }
 
     private suspend fun getClearedDataMap(database: MongoDatabase): Map<Context, String> {
-        return database.getCollection<Context>("context").find().toList()
+        return ObjectArrayList(database.getCollection<Context>("context").find().toList())
             .filter { doc ->
                 val keywords = doc.keywords.trim()
                 cqCode.none { cqCode ->
