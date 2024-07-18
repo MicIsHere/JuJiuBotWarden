@@ -9,7 +9,7 @@ import kotlin.system.measureTimeMillis
 
 class ClearBadWords {
 
-    private val dataBase = MongoDBUtil.getDatabase("PallasBot")
+    private val dataBase = MongoDBUtil.getDatabase("PallasBot")!!
 
     private val badWords = arrayOf(
         "傻逼",
@@ -46,11 +46,11 @@ class ClearBadWords {
         var count = 0
 
         getClearedDataMap(dataBase).forEach { doc ->
-            val answers = doc.key["answers"] as List<Document> // 获取 answers 列表
+            val answers = doc.key.answers
 
             answers.forEach { answer ->
-                val messages = answer["messages"] as List<String> // 获取 messages 列表
-                val keywords = answer["keywords"].toString() // 获取 keywords 字段
+                val messages = answer.messages
+                val keywords = answer.keywords
 
                 messages
                     .filter { message ->
@@ -79,16 +79,17 @@ class ClearBadWords {
         println("共检查到 $count 个不雅词汇")
     }
 
-    private fun getClearedDataMap(database: MongoDatabase?): Map<Document, String> {
-        return database!!.getCollection<Context>("context").find()
+    private fun getClearedDataMap(database: MongoDatabase): Map<Context, String> {
+        return database.getCollection("context", Context::class.java).find()
             .filter { doc ->
-                val keywords = doc["keywords"].toString().trim()
+                val keywords = doc.keywords.trim()
                 cqCode.none { cqCode ->
                     keywords.startsWith(cqCode)
                 }
             }
             .associateWith { doc ->
-                doc["_id"].toString()
+                // TODO: doc["_id"].toString()
+                ""
             }
     }
 }
