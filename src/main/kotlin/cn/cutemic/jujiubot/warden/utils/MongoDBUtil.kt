@@ -2,7 +2,9 @@ package cn.cutemic.jujiubot.warden.utils
 
 import com.mongodb.ConnectionString
 import com.mongodb.MongoClientSettings
+import com.mongodb.client.model.Filters
 import com.mongodb.kotlin.client.coroutine.MongoClient
+import com.mongodb.kotlin.client.coroutine.MongoCollection
 import com.mongodb.kotlin.client.coroutine.MongoDatabase
 
 
@@ -31,6 +33,28 @@ object MongoDBUtil {
             e.printStackTrace()
             return null
         }
+    }
+
+    suspend fun removeOperationByTime(database: MongoCollection<*>, removeMany: Boolean, time: Int){
+
+        when (removeMany) {
+            true -> {
+                try {
+                    database.findOneAndDelete(Filters.eq("time",time))
+                } catch (e: Exception){
+                    e.printStackTrace()
+                }
+            }
+
+            false -> {
+                try {
+                    database.findOneAndDelete(Filters.eq("time",time))
+                } catch (e: Exception){
+                    e.printStackTrace()
+                }
+            }
+        }
+
     }
 
 }
